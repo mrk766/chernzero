@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChurnZero 26 — Comprehensive Project Report</title>
+<style>
+  @page {
+    size: A4;
+    margin: 2cm 2.5cm;
+    @bottom-center {
+      content: "ChurnZero 26 — Comprehensive Report | Page " counter(page) " of " counter(pages);
+      font-size: 8pt;
+      color: #888;
+    }
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: #1a1a2e;
+    max-width: 100%;
+  }
+  h1 {
+    font-size: 22pt;
+    color: #0f3460;
+    border-bottom: 3px solid #0f3460;
+    padding-bottom: 8px;
+    margin-top: 0;
+  }
+  h2 {
+    font-size: 15pt;
+    color: #16213e;
+    border-bottom: 1.5px solid #e0e0e0;
+    padding-bottom: 4px;
+    margin-top: 28px;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
+    color: #0f3460;
+    margin-top: 18px;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 10.5pt;
+    color: #333;
+    margin-top: 14px;
+  }
+  .cover {
+    text-align: center;
+    padding: 80px 0 60px;
+    page-break-after: always;
+  }
+  .cover h1 {
+    font-size: 32pt;
+    border: none;
+    margin-bottom: 8px;
+  }
+  .cover .subtitle {
+    font-size: 16pt;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 10pt;
+    color: #888;
+    margin-top: 60px;
+  }
+  .cover .meta div {
+    margin: 4px 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .badge-approved { background: #d4edda; color: #155724; }
+  .badge-builder { background: #cce5ff; color: #004085; }
+  .badge-clean { background: #d4edda; color: #155724; }
+  .badge-p1 { background: #f8d7da; color: #721c24; }
+  .badge-p2 { background: #fff3cd; color: #856404; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  th {
+    background: #f0f4f8;
+    font-weight: 600;
+    color: #16213e;
+  }
+  tr:nth-child(even) { background: #fafbfc; }
+  code {
+    background: #f0f4f8;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+    font-family: 'Consolas', 'Monaco', monospace;
+  }
+  pre {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 9pt;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+  }
+  .section-divider {
+    border: none;
+    border-top: 2px solid #0f3460;
+    margin: 30px 0;
+  }
+  .decision-box {
+    background: #f0f7ff;
+    border-left: 4px solid #0f3460;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .risk-high { color: #721c24; font-weight: 600; }
+  .risk-medium { color: #856404; font-weight: 600; }
+  .risk-low { color: #155724; font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin: 3px 0; }
+  .toc { margin: 20px 0; }
+  .toc a { color: #0f3460; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { margin: 6px 0; font-size: 10.5pt; }
+  .toc li::before { content: ""; }
+  .page-break { page-break-before: always; }
+  .highlight { background: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li::before { content: ""; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <h1>ChurnZero 26</h1>
+  <div class="subtitle">Banking Customer Churn Prediction</div>
+  <p style="font-size: 13pt; color: #333;">Comprehensive Project Report</p>
+  <p style="font-size: 10pt; color: #666;">Design Doc + Engineering Plan + Research + Business Strategy</p>
+  <div class="meta">
+    <div><strong>Author:</strong> Muhammed Midlaj</div>
+    <div><strong>Date:</strong> May 19, 2026</div>
+    <div><strong>Branch:</strong> master</div>
+    <div><strong>Status:</strong> <span class="badge badge-approved">APPROVED</span></div>
+    <div><strong>Mode:</strong> <span class="badge badge-builder">Builder</span></div>
+    <div><strong>Timeline:</strong> 24-48 hours</div>
+    <div><strong>Approach:</strong> Speed Runner + Full Interactive Dashboard</div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h2>Table of Contents</h2>
+<div class="toc">
+<ul>
+  <li><strong>1.</strong> Executive Summary</li>
+  <li><strong>2.</strong> Problem Statement & Context</li>
+  <li><strong>3.</strong> Design Decisions</li>
+  <li><strong>4.</strong> Technical Architecture</li>
+  <li><strong>5.</strong> Feature Engineering Strategy</li>
+  <li><strong>6.</strong> Model Selection & Training</li>
+  <li><strong>7.</strong> Business Translation Layer</li>
+  <li><strong>8.</strong> Dashboard Design (Streamlit)</li>
+  <li><strong>9.</strong> Implementation Plan</li>
+  <li><strong>10.</strong> Risk Analysis & Mitigations</li>
+  <li><strong>11.</strong> Research & Landscape Analysis</li>
+  <li><strong>12.</strong> Evaluation Criteria</li>
+  <li><strong>13.</strong> TODOS & Follow-ups</li>
+  <li><strong>14.</strong> Engineering Review Report</li>
+</ul>
+</div>
+
+<hr class="section-divider">
+
+<!-- 1. EXECUTIVE SUMMARY -->
+<h2>1. Executive Summary</h2>
+
+<p>ChurnZero 26 is an industry-focused Data Science hackathon where participants solve a real-world banking churn problem. Banks lose 15-25% of customers annually to churn, directly impacting deposits, cross-sell revenue, and lifetime value.</p>
+
+<p><strong>The Challenge:</strong> Build a predictive model on a banking dataset to identify at-risk customers and propose data-driven retention strategies that a business team could actually execute.</p>
+
+<p><strong>Our Approach:</strong> A LightGBM-based churn prediction model with full-stack delivery: model performance, business translation layer, and an interactive Streamlit dashboard for judges to explore.</p>
+
+<p><strong>Key Differentiator:</strong> Most teams stop at AUC scores. We translate predictions into actionable retention strategies with dollar-value estimates, delivered through an interactive dashboard where judges can drill down into individual customers, see SHAP explanations, and explore retention playbooks.</p>
+
+<div class="decision-box">
+  <strong>Winning Formula:</strong> Model Performance + Business Translation + Interactive Demo = Hackathon Win
+</div>
+
+<hr class="section-divider">
+
+<!-- 2. PROBLEM STATEMENT -->
+<h2>2. Problem Statement & Context</h2>
+
+<h3>2.1 The Business Problem</h3>
+<p>Customer churn in banking is a $XX billion problem globally. When a customer leaves:</p>
+<ul>
+  <li><strong>Direct loss:</strong> Deposits, fee revenue, interest income</li>
+  <li><strong>Indirect loss:</strong> Cross-sell opportunities (credit cards, loans, investments)</li>
+  <li><strong>Acquisition cost:</strong> Replacing a customer costs 5-25x more than retaining one</li>
+  <li><strong>Lifetime value impact:</strong> A retained customer's LTV compounds over years</li>
+</ul>
+
+<h3>2.2 The Hackathon Challenge</h3>
+<p>ChurnZero 26 provides a banking dataset and asks participants to:</p>
+<ol>
+  <li>Build a predictive model to identify at-risk customers</li>
+  <li>Propose data-driven retention strategies a business team can execute</li>
+  <li>Translate model outputs into business impact</li>
+</ol>
+
+<h3>2.3 What Makes This Hard</h3>
+<ul>
+  <li><strong>Class imbalance:</strong> Only 15-25% of customers churn — naive models achieve 75-85% accuracy by predicting "no churn"</li>
+  <li><strong>Feature complexity:</strong> Banking data has temporal patterns, behavioral signals, and product interactions</li>
+  <li><strong>Business translation:</strong> A model score means nothing without actionable next steps</li>
+  <li><strong>Time pressure:</strong> 24-48 hours to deliver a complete solution</li>
+</ul>
+
+<hr class="section-divider">
+
+<!-- 3. DESIGN DECISIONS -->
+<h2>3. Design Decisions</h2>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Decision</th>
+    <th>Choice</th>
+    <th>Rationale</th>
+  </tr>
+  <tr>
+    <td>D1</td>
+    <td>Data leakage handling</td>
+    <td>Full-data feature engineering</td>
+    <td>Hackathon test set is separate file; mild risk acceptable for speed</td>
+  </tr>
+  <tr>
+    <td>D2</td>
+    <td>LTV source</td>
+    <td>Derive from dataset features</td>
+    <td>More defensible to judges than industry benchmarks</td>
+  </tr>
+  <tr>
+    <td>D3</td>
+    <td>Reproducibility</td>
+    <td>Add requirements.txt</td>
+    <td>Judges need to run the notebook</td>
+  </tr>
+  <tr>
+    <td>D4</td>
+    <td>CV strategy</td>
+    <td>StratifiedKFold(5, shuffle=True)</td>
+    <td>Preserves churn ratio in each fold</td>
+  </tr>
+  <tr>
+    <td>D5</td>
+    <td>Inline assertions</td>
+    <td>Add to TODOS.md</td>
+    <td>Prevents silent failures in time-constrained hackathon</td>
+  </tr>
+  <tr>
+    <td>D6</td>
+    <td>Dashboard</td>
+    <td>Full interactive Streamlit dashboard</td>
+    <td>Judges remember what they can click; rare in hackathons</td>
+  </tr>
+  <tr>
+    <td>D7</td>
+    <td>Model choice</td>
+    <td>LightGBM with class_weight='balanced'</td>
+    <td>Best performance on tabular data, handles imbalance natively</td>
+  </tr>
+  <tr>
+    <td>D8</td>
+    <td>Threshold optimization</td>
+    <td>Tune on CV folds, not train set</td>
+    <td>Prevents threshold overfitting to training distribution</td>
+  </tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- 4. TECHNICAL ARCHITECTURE -->
+<h2>4. Technical Architecture</h2>
+
+<h3>4.1 System Architecture</h3>
+<pre>
+Data Pipeline
+=============
+Data (train.csv)
+  |
+  +---> EDA (shape, dtypes, target distribution, missing values)
+  |
+  +---> Feature Engineering
+  |       +-- RFM: Recency, Frequency, Monetary
+  |       +-- Demographics: age, gender, geography (one-hot)
+  |       +-- Product holdings: count, types
+  |       +-- Behavioral: complaints, service calls, tenure
+  |
+  +---> Train/Val Split (StratifiedKFold, 5-fold, shuffle=True)
+  |
+  +---> Model (LightGBM, class_weight='balanced')
+  |       +-- Default params -> baseline CV score
+  |       +-- Bayesian tuning -> optimized CV score
+  |
+  +---> Threshold Optimization (on CV folds, not train set)
+  |
+  +---> Business Translation
+  |       +-- LTV derivation (from balance, products, tenure)
+  |       +-- Segment mapping (probability -> risk tier)
+  |       +-- Retention playbook (action per segment, $ impact)
+  |
+  +---> Dashboard (Streamlit)
+          +-- Customer drill-down (select -> risk + SHAP)
+          +-- Segment overview (churn distribution by tier)
+          +-- Retention playbook (actions + $ impact)
+          +-- SHAP force plot (why this customer?)
+</pre>
+
+<h3>4.2 File Structure</h3>
+<pre>
+hackathon/
+  +-- churn_prediction.ipynb    # Main notebook (EDA + Model + Business)
+  +-- dashboard.py              # Streamlit interactive dashboard
+  +-- requirements.txt          # Dependencies (pinned versions)
+  +-- data/                     # Dataset files
+  |     +-- train.csv
+  |     +-- test.csv
+  +-- models/                   # Saved model artifacts
+  |     +-- lgbm_model.pkl
+  |     +-- feature_importance.csv
+  +-- outputs/                  # Generated reports
+        +-- shap_plots/
+        +-- segment_analysis.csv
+</pre>
+
+<h3>4.3 Technology Stack</h3>
+<table>
+  <tr>
+    <th>Component</th>
+    <th>Technology</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td>Data Processing</td>
+    <td>pandas, numpy</td>
+    <td>Data loading, cleaning, feature engineering</td>
+  </tr>
+  <tr>
+    <td>Machine Learning</td>
+    <td>LightGBM, scikit-learn</td>
+    <td>Model training, CV, metrics</td>
+  </tr>
+  <tr>
+    <td>Hyperparameter Tuning</td>
+    <td>Optuna</td>
+    <td>Bayesian optimization</td>
+  </tr>
+  <tr>
+    <td>Explainability</td>
+    <td>SHAP</td>
+    <td>Feature importance, individual explanations</td>
+  </tr>
+  <tr>
+    <td>Visualization</td>
+    <td>matplotlib, seaborn, plotly</td>
+    <td>Static plots, interactive dashboard charts</td>
+  </tr>
+  <tr>
+    <td>Dashboard</td>
+    <td>Streamlit</td>
+    <td>Interactive demo for judges</td>
+  </tr>
+  <tr>
+    <td>Model Persistence</td>
+    <td>joblib</td>
+    <td>Save/load trained model</td>
+  </tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- 5. FEATURE ENGINEERING -->
+<h2>5. Feature Engineering Strategy</h2>
+
+<h3>5.1 RFM Features (Recency, Frequency, Monetary)</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Definition</th>
+    <th>Why It Matters</th>
+  </tr>
+  <tr>
+    <td>Recency</td>
+    <td>Days since last transaction</td>
+    <td>Inactive customers are more likely to churn</td>
+  </tr>
+  <tr>
+    <td>Frequency</td>
+    <td>Transaction count (last 30/90/180 days)</td>
+    <td>Declining frequency signals disengagement</td>
+  </tr>
+  <tr>
+    <td>Monetary</td>
+    <td>Average balance, total deposits, fee revenue</td>
+    <td>High-value customers are worth more to retain</td>
+  </tr>
+</table>
+
+<h3>5.2 Behavioral Features</h3>
+<ul>
+  <li><strong>Trend deltas:</strong> Change in transaction frequency (month-over-month)</li>
+  <li><strong>Product engagement:</strong> Number of products held, product diversity</li>
+  <li><strong>Service interactions:</strong> Complaint count, support calls, channel preferences</li>
+  <li><strong>Tenure:</strong> Time as customer (longer tenure = higher switching cost)</li>
+</ul>
+
+<h3>5.3 Demographic Features</h3>
+<ul>
+  <li>Age, gender, geography (one-hot encoded)</li>
+  <li>Account type (savings, checking, investment)</li>
+  <li>Income bracket (if available)</li>
+</ul>
+
+<h3>5.4 Data Leakage Prevention</h3>
+<div class="decision-box">
+  <strong>Decision:</strong> Full-data feature engineering chosen for hackathon speed.<br>
+  <strong>Risk:</strong> If test set is a random split from train, RFM computed on full data leaks future information.<br>
+  <strong>Mitigation:</strong> In hackathon context, test set is usually a separate file — mild risk acceptable. For internal CV, compute RFM on train fold only.
+</div>
+
+<hr class="section-divider">
+
+<!-- 6. MODEL SELECTION -->
+<h2>6. Model Selection & Training</h2>
+
+<h3>6.1 Why LightGBM</h3>
+<ul>
+  <li><strong>Tabular data king:</strong> Gradient boosting consistently outperforms deep learning on structured/tabular data</li>
+  <li><strong>Speed:</strong> Fast training, fast iteration — critical for 24-48h timeline</li>
+  <li><strong>Native categorical support:</strong> Handles categorical features without one-hot encoding</li>
+  <li><strong>Imbalance handling:</strong> <code>class_weight='balanced'</code> adjusts for 15-25% churn rate</li>
+  <li><strong>Interpretability:</strong> Built-in feature importance + SHAP integration</li>
+</ul>
+
+<h3>6.2 Training Strategy</h3>
+<pre>
+1. Baseline: LightGBM default params + Stratified 5-fold CV
+   - Log AUC-ROC per fold + mean
+   - Establish floor performance
+
+2. Tuning: Optuna Bayesian optimization
+   - Search space: num_leaves, max_depth, learning_rate, n_estimators
+   - Objective: maximize mean CV AUC-ROC
+   - 50-100 trials (time permitting)
+
+3. Threshold: Optimize on CV folds (not train set)
+   - Youden's J statistic or F1-optimal threshold
+   - Apply to final predictions
+</pre>
+
+<h3>6.3 Class Imbalance Handling</h3>
+<table>
+  <tr>
+    <th>Strategy</th>
+    <th>Pros</th>
+    <th>Cons</th>
+  </tr>
+  <tr>
+    <td>class_weight='balanced'</td>
+    <td>Built-in, no data modification, fast</td>
+    <td>May over-correct on extreme imbalance</td>
+  </tr>
+  <tr>
+    <td>SMOTE</td>
+    <td>Creates synthetic minority samples</td>
+    <td>Slower, can introduce noise, changes data distribution</td>
+  </tr>
+  <tr>
+    <td>Threshold tuning</td>
+    <td>No model change, post-hoc adjustment</td>
+    <td>Requires separate optimization step</td>
+  </tr>
+</table>
+<p><strong>Recommendation:</strong> Use <code>class_weight='balanced'</code> + threshold tuning. Test SMOTE if time permits.</p>
+
+<hr class="section-divider">
+
+<!-- 7. BUSINESS TRANSLATION -->
+<h2>7. Business Translation Layer</h2>
+
+<h3>7.1 LTV Derivation</h3>
+<p>Customer Lifetime Value derived from dataset features:</p>
+<pre>
+LTV = (avg_monthly_balance * margin_rate * tenure_months)
+    + (product_count * avg_product_revenue)
+    - (service_cost_per_interaction * complaint_count)
+</pre>
+
+<h3>7.2 Risk Segmentation</h3>
+<table>
+  <tr>
+    <th>Segment</th>
+    <th>Churn Probability</th>
+    <th>Size (est.)</th>
+    <th>Action Priority</th>
+  </tr>
+  <tr>
+    <td style="color: #721c24; font-weight: 600;">Critical</td>
+    <td>> 70%</td>
+    <td>~10-15%</td>
+    <td>Immediate outreach</td>
+  </tr>
+  <tr>
+    <td style="color: #856404; font-weight: 600;">High Risk</td>
+    <td>50-70%</td>
+    <td>~15-20%</td>
+    <td>Proactive retention</td>
+  </tr>
+  <tr>
+    <td style="color: #0c5460; font-weight: 600;">Medium Risk</td>
+    <td>30-50%</td>
+    <td>~20-25%</td>
+    <td>Monitor + nurture</td>
+  </tr>
+  <tr>
+    <td style="color: #155724; font-weight: 600;">Low Risk</td>
+    <td>< 30%</td>
+    <td>~40-50%</td>
+    <td>Standard engagement</td>
+  </tr>
+</table>
+
+<h3>7.3 Retention Playbook</h3>
+<table>
+  <tr>
+    <th>Segment</th>
+    <th>Recommended Action</th>
+    <th>Est. Cost</th>
+    <th>Est. Retention Value</th>
+  </tr>
+  <tr>
+    <td>Critical</td>
+    <td>Personal call from relationship manager + fee waiver + loyalty bonus</td>
+    <td>$200-500/customer</td>
+    <td>$3,000-8,000 LTV saved</td>
+  </tr>
+  <tr>
+    <td>High Risk</td>
+    <td>Targeted offer (rate bonus, product bundle discount)</td>
+    <td>$100-200/customer</td>
+    <td>$2,000-5,000 LTV saved</td>
+  </tr>
+  <tr>
+    <td>Medium Risk</td>
+    <td>Engagement campaign (newsletters, product education)</td>
+    <td>$20-50/customer</td>
+    <td>$1,000-3,000 LTV saved</td>
+  </tr>
+  <tr>
+    <td>Low Risk</td>
+    <td>Standard service (maintain satisfaction)</td>
+    <td>$5-10/customer</td>
+    <td>Preventive maintenance</td>
+  </tr>
+</table>
+
+<h3>7.4 ROI Calculation</h3>
+<pre>
+For each segment:
+  Retention Rate Improvement = (expected_churn - actual_churn_after_intervention)
+  Revenue Saved = Retention Rate * Segment Size * Avg LTV
+  ROI = (Revenue Saved - Intervention Cost) / Intervention Cost
+
+Example (Critical segment, 100 customers):
+  Expected churn: 80 customers
+  After intervention: 50 customers (37.5% improvement)
+  Revenue saved: 30 * $5,000 = $150,000
+  Intervention cost: 100 * $350 = $35,000
+  ROI = ($150,000 - $35,000) / $35,000 = 329%
+</pre>
+
+<hr class="section-divider">
+
+<!-- 8. DASHBOARD DESIGN -->
+<h2>8. Dashboard Design (Streamlit)</h2>
+
+<h3>8.1 Dashboard Layout</h3>
+<pre>
++------------------------------------------------------------------+
+|  CHURNZERO 26 — Customer Churn Intelligence Dashboard            |
++------------------------------------------------------------------+
+| [Sidebar Filters]                                                |
+|   - Risk Segment: [All] [Critical] [High] [Medium] [Low]        |
+|   - Geography: [All] [Region A] [Region B] ...                   |
+|   - Product Count: [1-10]                                        |
+|   - Tenure: [0-120 months]                                       |
++------------------------------------------------------------------+
+| [Row 1: KPI Cards]                                               |
+|   [Total Customers] [At Risk] [Avg Churn Prob] [Est. $ at Risk]  |
++------------------------------------------------------------------+
+| [Row 2: Charts]                                                  |
+|   [Churn Distribution by Segment]  [Feature Importance (SHAP)]   |
++------------------------------------------------------------------+
+| [Row 3: Customer Drill-Down]                                     |
+|   [Select Customer ID v]                                         |
+|   [Churn Risk: 78%] [LTV: $5,200] [Segment: Critical]          |
+|   [SHAP Force Plot: Why this customer is at risk]                |
+|   [Recommended Action: Personal call + fee waiver]               |
++------------------------------------------------------------------+
+| [Row 4: Retention Playbook]                                      |
+|   [Segment | Action | Cost | Value | ROI]                        |
++------------------------------------------------------------------+
+</pre>
+
+<h3>8.2 Dashboard Components</h3>
+<table>
+  <tr>
+    <th>Component</th>
+    <th>Technology</th>
+    <th>Interactivity</th>
+  </tr>
+  <tr>
+    <td>KPI Cards</td>
+    <td>st.metric()</td>
+    <td>Auto-update with filters</td>
+  </tr>
+  <tr>
+    <td>Segment Distribution</td>
+    <td>plotly pie/bar chart</td>
+    <td>Click segment to filter table</td>
+  </tr>
+  <tr>
+    <td>Feature Importance</td>
+    <td>SHAP summary plot</td>
+    <td>Hover for feature details</td>
+  </tr>
+  <tr>
+    <td>Customer Drill-Down</td>
+    <td>SHAP force plot + st.selectbox</td>
+    <td>Select customer ID to explore</td>
+  </tr>
+  <tr>
+    <td>Retention Playbook</td>
+    <td>st.dataframe()</td>
+    <td>Sortable, filterable table</td>
+  </tr>
+  <tr>
+    <td>Filters</td>
+    <td>st.sidebar</td>
+    <td>Multi-select, range sliders</td>
+  </tr>
+</table>
+
+<h3>8.3 Why This Wins</h3>
+<ul>
+  <li><strong>Interactive:</strong> Judges can click, filter, explore — not just read</li>
+  <li><strong>Memorable:</strong> "I could see exactly which customers were at risk and why"</li>
+  <li><strong>Rare:</strong> Most teams submit notebooks only — dashboard stands out</li>
+  <li><strong>Business-ready:</strong> Looks like something a bank could actually deploy</li>
+</ul>
+
+<hr class="section-divider">
+
+<!-- 9. IMPLEMENTATION PLAN -->
+<h2>9. Implementation Plan</h2>
+
+<h3>9.1 Timeline (24-48 hours)</h3>
+<table>
+  <tr>
+    <th>Step</th>
+    <th>Task</th>
+    <th>Time</th>
+    <th>Priority</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Setup: notebook + requirements.txt + dataset download</td>
+    <td>30 min</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>EDA + Feature Engineering (RFM, demographics, behavioral)</td>
+    <td>2-3 hours</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Baseline Model: LightGBM default + Stratified 5-fold CV</td>
+    <td>1 hour</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Tune + Threshold: Optuna Bayesian optimization</td>
+    <td>2-3 hours</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Business Translation: LTV + segments + playbook</td>
+    <td>2-3 hours</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Dashboard: Streamlit interactive demo</td>
+    <td>4-6 hours</td>
+    <td><span class="badge badge-p1">P1</span></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Presentation: notebook narrative + summary</td>
+    <td>2-4 hours</td>
+    <td><span class="badge badge-p2">P2</span></td>
+  </tr>
+</table>
+
+<p><strong>Total estimated time:</strong> 14-22 hours focused work. Rest is polish and buffer.</p>
+
+<h3>9.2 Critical Path</h3>
+<pre>
+Dataset Download
+       |
+       v
+Feature Engineering (blocks model)
+       |
+       v
+Baseline Model (blocks tuning)
+       |
+       v
+Tuned Model (blocks dashboard + business translation)
+       |
+       v
+Dashboard + Business Translation (parallel)
+       |
+       v
+Presentation (final step)
+</pre>
+
+<hr class="section-divider">
+
+<!-- 10. RISK ANALYSIS -->
+<h2>10. Risk Analysis & Mitigations</h2>
+
+<table>
+  <tr>
+    <th>Risk</th>
+    <th>Likelihood</th>
+    <th>Impact</th>
+    <th>Mitigation</th>
+  </tr>
+  <tr>
+    <td>Data leakage via RFM</td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td><span class="risk-high">High</span></td>
+    <td>Acceptable risk for hackathon; compute RFM on train only for internal CV</td>
+  </tr>
+  <tr>
+    <td>Silent NaN in features</td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td>Inline assertions after each transform (shape checks, NaN guards)</td>
+  </tr>
+  <tr>
+    <td>Memory overflow</td>
+    <td><span class="risk-low">Low</span></td>
+    <td><span class="risk-high">High</span></td>
+    <td>dtype optimization, chunked processing if needed</td>
+  </tr>
+  <tr>
+    <td>Single-class CV fold</td>
+    <td><span class="risk-low">Low</span></td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td>StratifiedKFold preserves churn ratio in each fold</td>
+  </tr>
+  <tr>
+    <td>Dashboard development takes too long</td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td>Start with minimal dashboard, add features iteratively</td>
+  </tr>
+  <tr>
+    <td>Model doesn't converge</td>
+    <td><span class="risk-low">Low</span></td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td>LightGBM is robust; check for convergence warnings</td>
+  </tr>
+  <tr>
+    <td>Time runs out</td>
+    <td><span class="risk-medium">Medium</span></td>
+    <td><span class="risk-high">High</span></td>
+    <td>Prioritize: model > business translation > dashboard > presentation</td>
+  </tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- 11. RESEARCH -->
+<h2>11. Research & Landscape Analysis</h2>
+
+<h3>11.1 Conventional Wisdom (Layer 1)</h3>
+<ul>
+  <li>Everyone uses XGBoost/LightGBM on tabular data</li>
+  <li>Feature engineering differentiates teams — RFM, temporal, behavioral signals</li>
+  <li>SMOTE or class weighting for imbalanced data</li>
+  <li>SHAP for model interpretability</li>
+</ul>
+
+<h3>11.2 Current Discourse (Layer 2)</h3>
+<ul>
+  <li>Leaderboard typically rewards AUC-ROC or F1</li>
+  <li>Winning teams pair model quality with business translation</li>
+  <li>Interactive demos are rare but memorable</li>
+  <li>Threshold optimization is often overlooked</li>
+</ul>
+
+<h3>11.3 Our Edge (Layer 3)</h3>
+<div class="decision-box">
+  <strong>Insight:</strong> The gap between "good model" and "winning submission" is the business translation layer. Most teams stop at AUC scores. The winning version translates predictions into retention actions with dollar estimates, delivered through an interactive dashboard.
+</div>
+
+<hr class="section-divider">
+
+<!-- 12. EVALUATION -->
+<h2>12. Evaluation Criteria</h2>
+
+<h3>12.1 Model Performance</h3>
+<ul>
+  <li><strong>Target:</strong> AUC-ROC > 0.85 (or top-10% on leaderboard)</li>
+  <li><strong>Secondary:</strong> F1 score, precision-recall curve</li>
+  <li><strong>Validation:</strong> Stratified 5-fold CV</li>
+</ul>
+
+<h3>12.2 Business Impact</h3>
+<ul>
+  <li>Clear segment definitions with actionable recommendations</li>
+  <li>Dollar-value estimates for each retention action</li>
+  <li>ROI calculation per segment</li>
+</ul>
+
+<h3>12.3 Presentation Quality</h3>
+<ul>
+  <li>Clean notebook narrative with clear section headers</li>
+  <li>Story flows: problem → model → what to do</li>
+  <li>Interactive dashboard for judges to explore</li>
+</ul>
+
+<hr class="section-divider">
+
+<!-- 13. TODOS -->
+<h2>13. TODOS & Follow-ups</h2>
+
+<h3>13.1 Inline Notebook Assertions</h3>
+<table>
+  <tr>
+    <th>What</th>
+    <td>Add shape checks, NaN guards, and convergence warnings after each major cell</td>
+  </tr>
+  <tr>
+    <th>Why</th>
+    <td>Silent failures waste debugging time in a 24-48h hackathon</td>
+  </tr>
+  <tr>
+    <th>Pros</th>
+    <td>Catches bugs early, saves 30-60 min of debugging</td>
+  </tr>
+  <tr>
+    <th>Cons</th>
+    <td>Extra code in notebook (minimal)</td>
+  </tr>
+  <tr>
+    <th>Depends on</th>
+    <td>Dataset must be loaded first</td>
+  </tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- 14. ENGINEERING REVIEW -->
+<h2>14. Engineering Review Report</h2>
+
+<h3>14.1 Review Summary</h3>
+<table>
+  <tr>
+    <th>Dimension</th>
+    <th>Issues Found</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Architecture</td>
+    <td>3</td>
+    <td>All decided</td>
+  </tr>
+  <tr>
+    <td>Code Quality</td>
+    <td>2</td>
+    <td>All addressed</td>
+  </tr>
+  <tr>
+    <td>Test Coverage</td>
+    <td>12 gaps</td>
+    <td>Expected for hackathon — inline assertions recommended</td>
+  </tr>
+  <tr>
+    <td>Performance</td>
+    <td>2</td>
+    <td>All addressed</td>
+  </tr>
+</table>
+
+<h3>14.2 Decisions Made</h3>
+<ol>
+  <li>Full-data feature engineering (hackathon speed over strict leakage prevention)</li>
+  <li>Derive LTV from dataset features (not industry benchmarks)</li>
+  <li>Add requirements.txt (reproducibility)</li>
+  <li>StratifiedKFold(5, shuffle=True) (preserve churn ratio)</li>
+  <li>Inline assertions added to TODOS.md</li>
+  <li>Full interactive Streamlit dashboard (judges remember what they can click)</li>
+</ol>
+
+<h3>14.3 Verdict</h3>
+<div class="decision-box">
+  <strong>ENG CLEARED</strong> — 0 unresolved decisions, ready to implement.
+</div>
+
+<hr class="section-divider">
+
+<div style="text-align: center; color: #888; font-size: 9pt; margin-top: 40px;">
+  <p>Generated by /office-hours + /plan-eng-review on 2026-05-19</p>
+  <p>ChurnZero 26 — Banking Customer Churn Prediction</p>
+</div>
+
+</body>
+</html>
